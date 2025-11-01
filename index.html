@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Uma celebração especial de amor e carinho. 📅💖"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Uma surpresa especial para você 💖" />
+    <meta property="og:description" content="Algo especial aguarda você..." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/og.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Uma surpresa especial para você 💖" />
+    <meta name="twitter:description" content="Algo especial aguarda você..." />
+    <meta name="twitter:image" content="assets/og.jpg" />
+
+    <title>Uma surpresa especial 💖</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💖%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <!-- Overlay de Primeira Interação -->
+    <div id="music-overlay" class="overlay">
+      <div class="overlay-content">
+        <h2>🎵 Toque para começar</h2>
+        <p>Aperte qualquer lugar para desbloquear a experiência</p>
+        <button id="start-experience" class="btn-primary">Começar</button>
+      </div>
+    </div>
+
+    <!-- Tela de Espera (Countdown) -->
+    <div id="countdown-screen" class="screen">
+      <div class="container">
+        <header class="countdown-header">
+          <h1>Para <span id="countdown-name">minha gatinha</span> 💖</h1>
+        </header>
+
+        <div class="countdown-display">
+          <div class="countdown-grid">
+            <div class="countdown-item">
+              <div class="countdown-number" id="days">00</div>
+              <div class="countdown-label">dias</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="hours">00</div>
+              <div class="countdown-label">horas</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="minutes">00</div>
+              <div class="countdown-label">minutos</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="seconds">00</div>
+              <div class="countdown-label">segundos</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="countdown-message">
+          Falta pouco! Estou contando cada segundo... ⏳
+        </p>
+      </div>
+    </div>
+
+    <!-- Tela Liberada (Conteúdo Completo) -->
+    <div id="content-screen" class="screen hidden">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Chegou o dia! <span id="hero-date"></span> 💖
+          </h1>
+          <p class="hero-subtitle">Uma surpresa especial espera por você</p>
+          <button id="scroll-to-message" class="btn-primary">
+            Ler minha mensagem
+          </button>
+        </div>
+      </section>
+
+      <!-- Seção de Música -->
+      <section id="music-section" class="section">
+        <div class="container">
+          <h2 class="section-title">Uma das nossas músicas 🎵</h2>
+          <div class="music-player-wrapper">
+            <audio id="audio-player" preload="metadata">
+              <source src="" type="audio/mpeg" />
+              Seu navegador não suporta áudio.
+            </audio>
+            <div class="music-player">
+              <button
+                id="play-pause"
+                class="btn-control"
+                aria-label="Play/Pause"
+              >
+                <span class="icon">▶</span>
+              </button>
+              <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+              </div>
+              <div class="time-display">
+                <span id="current-time">0:00</span> /
+                <span id="total-time">0:00</span>
+              </div>
+              <div class="volume-control">
+                <label for="volume" class="sr-only">Volume</label>
+                <input
+                  type="range"
+                  id="volume"
+                  min="0"
+                  max="100"
+                  value="50"
+                  aria-label="Volume"
+                />
+                <span id="volume-icon">🔊</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção de Fotos -->
+      <section id="gallery-section" class="section">
+        <div class="container">
+          <h2 class="section-title">Nossas Memórias 📸</h2>
+          <div id="photo-gallery" class="gallery-grid">
+            <!-- Imagens serão inseridas via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox hidden">
+        <button id="close-lightbox" class="lightbox-close" aria-label="Fechar">
+          ×
+        </button>
+        <div class="lightbox-content">
+          <img id="lightbox-image" src="" alt="" />
+          <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+        <button id="prev-photo" class="lightbox-nav" aria-label="Foto anterior">
+          ‹
+        </button>
+        <button id="next-photo" class="lightbox-nav" aria-label="Próxima foto">
+          ›
+        </button>
+      </div>
+
+      <!-- Seção de Mensagem -->
+      <section id="message-section" class="section">
+        <div class="container">
+          <h2 class="section-title">Minha Mensagem para Você 💌</h2>
+          <div class="message-card">
+            <div id="message-text" class="message-content">
+              <!-- Mensagem será inserida via JavaScript -->
+            </div>
+            <button id="print-message" class="btn-secondary">
+              Imprimir esta carta
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Toggle Animação de Fundo -->
+      <button
+        id="toggle-animation"
+        class="floating-btn"
+        aria-label="Toggle animação de fundo"
+        title="Ativar/desativar animação"
+      >
+        ✨
+      </button>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Feito com ❤️ para você</p>
+      </footer>
+    </div>
+
+    <!-- Canvas para Animação de Fundo -->
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

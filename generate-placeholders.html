@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Placeholders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff6b9d;
+        }
+        button {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #e55a8a;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .grid img {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Gerador de Imagens Placeholder</h1>
+        <p>Este gerador cria imagens SVG placeholder para testar a landing page.</p>
+        
+        <div>
+            <button onclick="generatePhotos()">Gerar Fotos de Exemplo</button>
+            <button onclick="generateOG()">Gerar OG Image</button>
+            <button onclick="downloadAll()">Baixar Todas</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+        
+        <div class="grid" id="preview"></div>
+    </div>
+
+    <script>
+        function generatePhotos() {
+            const colors = ['#ff6b9d', '#c471ed', '#4ecdc4', '#ffd93d', '#6c5ce7', '#feca57'];
+            const emojis = ['💖', '🌹', '✨', '💐', '🎁', '🦋', '💫', '🌸', '🎈', '💌', '🎀', '🌈'];
+            
+            let result = '';
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '';
+            
+            for (let i = 1; i <= 6; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                const svg = `
+                    <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="500" height="500" fill="${color}"/>
+                        <text x="50%" y="50%" font-size="120" text-anchor="middle" dominant-baseline="middle">
+                            ${emoji}
+                        </text>
+                        <text x="50%" y="70%" font-size="30" text-anchor="middle" fill="rgba(255,255,255,0.3)">
+                            Foto ${i}
+                        </text>
+                    </svg>
+                `;
+                
+                const blob = new Blob([svg], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                
+                result += `Foto ${i} gerada!<br>`;
+                
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = `Foto ${i}`;
+                preview.appendChild(img);
+            }
+            
+            document.getElementById('result').innerHTML = result + '<br>Use estas imagens como base. Clique com botão direito → Salvar imagem como → Salve em assets/ como foto1.jpg, foto2.jpg, etc.';
+        }
+        
+        function generateOG() {
+            const svg = `
+                <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#c471ed;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="1200" height="630" fill="url(#grad)"/>
+                    <text x="600" y="300" font-size="80" fill="white" font-family="Arial" text-anchor="middle">
+                        Uma Surpresa Especial 💖
+                    </text>
+                    <text x="600" y="380" font-size="40" fill="rgba(255,255,255,0.8)" font-family="Arial" text-anchor="middle">
+                        Algo incrível te espera...
+                    </text>
+                </svg>
+            `;
+            
+            const blob = new Blob([svg], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'og.jpg';
+            a.click();
+            
+            document.getElementById('result').innerHTML = 'Imagem OG gerada e baixada!';
+        }
+        
+        function downloadAll() {
+            alert('Para baixar as fotos: 1) Gere as fotos, 2) Clique com botão direito em cada uma, 3) Salve como foto1.jpg, foto2.jpg, etc. na pasta assets/');
+        }
+    </script>
+</body>
+</html>
+

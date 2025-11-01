@@ -1,0 +1,15 @@
+# Assets pessoais (substitua pelos seus arquivos)
+assets/*.jpg
+assets/*.jpeg
+assets/*.png
+assets/*.mp3
+assets/*.wav
+assets/*.ogg
+
+# Manter estrutura
+!assets/.gitkeep
+
+# Sistema
+.DS_Store
+Thumbs.db
+
