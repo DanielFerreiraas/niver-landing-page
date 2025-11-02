@@ -10,7 +10,7 @@ const GIRLFRIEND_NAME = "A minha Gatinha";
 const TARGET_ISO = "2025-11-02T00:00:00";
 
 // URL da música (pode ser local: "assets/musica.mp3" ou externa)
-const MUSIC_URL = "assets/Amor Verdadeiro [v8puJ1l1Dfs].mp3";
+const MUSIC_URL = "assets/amor-verdadeiro.mp3";
 
 // Array com as fotos da galeria
 // Formato: { src: "URL_DA_IMAGEM", alt: "DESCRIÇÃO", caption: "LEGENDA" }
